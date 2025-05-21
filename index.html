@@ -58,49 +58,6 @@
             letter-spacing: 1px;
         }
 
-        .locations {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .location {
-            text-align: center;
-            padding: 20px;
-            background-color: white;
-            border-radius: 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            width: 200px;
-            position: relative;
-            cursor: default;
-        }
-
-        .location-name {
-            font-weight: 400;
-            font-size: 18px;
-            color: var(--primary-color);
-        }
-
-        .location-info {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            padding: 15px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .location:hover .location-info {
-            opacity: 1;
-        }
-
         .content {
             flex: 1;
             margin-top: 40px;
@@ -184,6 +141,13 @@
             letter-spacing: 0.5px;
         }
 
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
         .menu-item {
             margin-bottom: 15px;
         }
@@ -237,25 +201,8 @@
 
     <div class="container">
         <div class="header">
-            <div class="logo">Gratified</div>
+            <div class="logo">Gratified <strong>Coffee</strong></div>
             <div class="tagline">coffee+art</div>
-            
-            <div class="locations">
-                <div class="location">
-                    <div class="location-name">Berkeley</div>
-                    <div class="location-info">Lighthaven on Telegraph</div>
-                </div>
-                
-                <div class="location">
-                    <div class="location-name">San Francisco</div>
-                    <div class="location-info">Capp / 17th</div>
-                </div>
-                
-                <div class="location">
-                    <div class="location-name">[private location]</div>
-                    <div class="location-info">By invitation only</div>
-                </div>
-            </div>
             
             <div class="site-indicator">
                 <div class="dot" onclick="window.location.href='https://gratified.com'"></div>
