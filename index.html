@@ -5,33 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gratified Coffee</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Lateef:wght@200;300;400;500;600;700;800&display=swap');
+        
         :root {
-            --primary-color: #3E3E3E;
-            --secondary-color: #777777;
-            --accent-color: #C2815F;
-            --light-color: #F9F9F9;
-            --dark-color: #222222;
+            --deep-burgundy: #722F37;
+            --rich-saffron: #E8A317;
+            --warm-amber: #D2691E;
+            --dusty-rose: #C08497;
+            --deep-teal: #2D5B69;
+            --golden-sand: #E6C89C;
+            --burnt-orange: #CC5500;
+            --olive-bronze: #8B7355;
+            --cream-parchment: #F7F3E9;
+            --charcoal-ink: #3C3C3C;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
         }
 
         body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-            height: 100vh;
-            overflow-x: hidden;
+            background-color: var(--cream-parchment);
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(114, 47, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(232, 163, 23, 0.02) 0%, transparent 50%);
+            color: var(--charcoal-ink);
+            line-height: 1.8;
+            font-family: 'Amiri', serif;
+            font-weight: 400;
+            min-height: 100vh;
+        }
+
+        .ancient-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(45deg, var(--deep-burgundy) 0px, var(--deep-burgundy) 1px, transparent 1px, transparent 12px),
+                repeating-linear-gradient(-45deg, var(--rich-saffron) 0px, var(--rich-saffron) 1px, transparent 1px, transparent 12px);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 40px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -39,28 +63,47 @@
 
         .header {
             text-align: center;
-            margin-bottom: 60px;
-            padding-top: 60px;
+            margin-bottom: 80px;
+            padding: 40px 0;
+            border-bottom: 3px solid var(--rich-saffron);
+            border-top: 3px solid var(--rich-saffron);
+            position: relative;
         }
 
+        .header::before,
+        .header::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: var(--deep-burgundy);
+        }
+
+        .header::before { top: -8px; }
+        .header::after { bottom: -8px; }
+
         .logo {
-            font-size: 80px;
-            font-weight: 300;
-            letter-spacing: 4px;
-            color: var(--primary-color);
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            color: var(--deep-burgundy);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px var(--rich-saffron);
         }
 
         .tagline {
-            font-size: 24px;
-            color: var(--secondary-color);
-            margin-top: 10px;
-            font-weight: 300;
-            letter-spacing: 1px;
+            font-size: 28px;
+            color: var(--deep-teal);
+            font-weight: 400;
+            letter-spacing: 4px;
+            font-style: italic;
         }
 
         .content {
             flex: 1;
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         .navigation {
@@ -69,7 +112,7 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 30px;
             pointer-events: none;
             z-index: 100;
             left: 0;
@@ -77,126 +120,207 @@
         }
 
         .nav-arrow {
-            background-color: rgba(0, 0, 0, 0.1);
-            color: var(--dark-color);
-            width: 40px;
-            height: 40px;
-            border-radius: 0;
+            background-color: var(--deep-burgundy);
+            color: var(--golden-sand);
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 24px;
             pointer-events: auto;
-            transition: all 0.2s ease;
+            transition: all 0.4s ease;
+            border: 4px solid var(--rich-saffron);
+            font-family: serif;
+            font-weight: bold;
         }
 
         .nav-arrow:hover {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        .left-arrow {
-            margin-right: auto;
-        }
-
-        .right-arrow {
-            margin-left: auto;
+            background-color: var(--rich-saffron);
+            color: var(--deep-burgundy);
+            border-color: var(--deep-burgundy);
         }
 
         .site-indicator {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 40px;
+            gap: 25px;
+            margin-top: 60px;
         }
 
         .dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--secondary-color);
-            opacity: 0.4;
+            width: 16px;
+            height: 16px;
+            background-color: var(--olive-bronze);
+            opacity: 0.5;
             cursor: pointer;
+            transition: all 0.4s ease;
+            transform: rotate(45deg);
+            border: 2px solid var(--deep-burgundy);
         }
 
         .dot.active {
-            background-color: var(--accent-color);
+            background-color: var(--rich-saffron);
             opacity: 1;
+            border-color: var(--deep-burgundy);
+            transform: rotate(45deg) scale(1.3);
         }
 
         .section {
-            background-color: white;
-            border-radius: 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            padding: 30px;
-            margin-bottom: 20px;
-            border-left: 1px solid var(--accent-color);
+            background-color: rgba(247, 243, 233, 0.8);
+            padding: 45px;
+            margin-bottom: 35px;
+            border-left: 8px solid var(--warm-amber);
+            border-right: 8px solid var(--warm-amber);
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(114, 47, 55, 0.05);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            bottom: 15px;
+            left: 15px;
+            border: 2px solid var(--dusty-rose);
+            opacity: 0.3;
+            pointer-events: none;
         }
 
         .section-title {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            font-weight: 400;
-            letter-spacing: 0.5px;
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: var(--deep-burgundy);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
         }
 
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        .section-title::after {
+            content: '◆ ◆ ◆';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--rich-saffron);
+            font-size: 12px;
+            letter-spacing: 8px;
         }
 
         .menu-item {
-            margin-bottom: 15px;
-        }
-
-        .menu-item-name {
-            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            padding: 20px;
+            background-color: rgba(232, 163, 23, 0.08);
+            border-left: 4px solid var(--burnt-orange);
             font-size: 18px;
+            position: relative;
         }
 
-        .menu-item-description {
-            font-style: italic;
-            color: var(--secondary-color);
+        .menu-item::before {
+            content: '◆';
+            position: absolute;
+            left: -8px;
+            top: 22px;
+            color: var(--burnt-orange);
+            font-size: 14px;
+            background-color: var(--cream-parchment);
+            width: 16px;
+            height: 16px;
+            text-align: center;
+            line-height: 16px;
+        }
+
+        .menu-item p {
+            margin: 0;
+            color: var(--charcoal-ink);
         }
 
         .coming-soon {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 2px 6px;
-            font-size: 10px;
-            margin-left: 8px;
-            font-weight: 300;
+            background-color: var(--burnt-orange);
+            color: var(--cream-parchment);
+            padding: 6px 12px;
+            font-size: 12px;
+            margin-left: 12px;
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 2px;
+            border: 2px solid var(--rich-saffron);
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            color: var(--secondary-color);
-            margin-top: 40px;
-            font-size: 12px;
-            letter-spacing: 1px;
+            padding: 40px 20px;
+            color: var(--olive-bronze);
+            margin-top: 60px;
+            font-size: 16px;
+            letter-spacing: 2px;
+            border-top: 3px solid var(--dusty-rose);
+            background-color: rgba(232, 163, 23, 0.05);
+        }
+
+        footer a {
+            color: var(--warm-amber);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 400;
+            margin: 0 20px;
+        }
+
+        footer a:hover {
+            color: var(--deep-burgundy);
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
             .logo {
-                font-size: 60px;
+                font-size: 56px;
+                letter-spacing: 4px;
+            }
+
+            .tagline {
+                font-size: 22px;
+                letter-spacing: 2px;
             }
 
             .navigation {
-                padding: 0 10px;
+                padding: 0 15px;
+            }
+            
+            .nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .section {
+                padding: 30px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .menu-item {
+                padding: 15px;
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="ancient-pattern"></div>
+    
     <div class="navigation">
-        <a href="https://gratified.com" class="nav-arrow left-arrow">&#10094;</a>
-        <a href="https://gratified.art" class="nav-arrow right-arrow">&#10095;</a>
+        <a href="https://gratified.com" class="nav-arrow left-arrow">‹</a>
+        <a href="https://gratified.art" class="nav-arrow right-arrow">›</a>
     </div>
 
     <div class="container">
@@ -212,36 +336,51 @@
         </div>
         
         <div class="content">
-            <!-- Content for gratified.coffee -->
             <div class="section">
                 <h2 class="section-title">Basic Drinks</h2>
-                <p>Coffee (3 varieties) — Our signature coffee selection</p>
-                <p>Chai — Spiced to perfection</p>
-                <p>Matcha — Premium ceremonial grade</p>
-                <p>Cocao — Pure, ceremonial grade</p>
+                <div class="menu-item">
+                    <p>Coffee (3 varieties) — Our signature coffee selection</p>
+                </div>
+                <div class="menu-item">
+                    <p>Chai — Spiced to perfection</p>
+                </div>
+                <div class="menu-item">
+                    <p>Matcha — Premium ceremonial grade</p>
+                </div>
+                <div class="menu-item">
+                    <p>Cocao — Pure, ceremonial grade</p>
+                </div>
             </div>
             
             <div class="section">
                 <h2 class="section-title">Specialty Drinks</h2>
-                <p>I'm Gonna Call the Cops — A mind-blowing experience</p>
-                <p>Ma'am/Sir, This is a Wendy's — Not what you expected</p>
-                <p>I'm Gonna Kill Myself (No Don't, You're So Hot) — An emotional rollercoaster</p>
+                <div class="menu-item">
+                    <p>I'm Gonna Call the Cops — activated charcoal espresso</p>
+                </div>
+                <div class="menu-item">
+                    <p>Ma'am/Sir, This is a Wendy's — lavender cold brew</p>
+                </div>
+                <div class="menu-item">
+                    <p>I'm Gonna Kill Myself (No Don't, You're So Hot) — chocolate + rose</p>
+                </div>
             </div>
             
             <div class="section">
                 <h2 class="section-title">Food</h2>
-                <p>Overnight Oats — Prepared with love</p>
-                <p>Salad — Fresh, seasonal ingredients</p>
-                <p>Sushi — Made fresh daily</p>
+                <div class="menu-item">
+                    <p>Overnight Oats — blueberries, seeds, maple syrup</p>
+                </div>
+                <div class="menu-item">
+                    <p>Salad — chipotle</p>
+                </div>
+                <div class="menu-item">
+                    <p>Sushi — fresh rolls</p>
+                </div>
             </div>
         </div>
 
         <footer>
-            &copy; 2025 Gratified. All rights reserved.
-            <div style="margin-top: 10px;">
-                <a href="https://gratified.com" style="color: var(--accent-color); margin: 0 10px;">gratified.com</a>
-                <a href="https://gratified.coffee" style="color: var(--accent-color); margin: 0 10px;">gratified.coffee</a>
-                <a href="https://gratified.art" style="color: var(--accent-color); margin: 0 10px;">gratified.art</a>
+            <div style="margin-top: 20px;">
             </div>
         </footer>
     </div>
