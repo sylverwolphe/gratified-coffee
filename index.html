@@ -437,22 +437,42 @@
         </footer>
     </div>
 
-    <script>
-        // Background Music Setup
-        const audio = document.getElementById('background-music');
-        audio.volume = 0.15; // Keep it subtle - 15% volume
-        
-        // Handle autoplay restrictions (most browsers block autoplay with sound)
-        document.addEventListener('click', function() {
-            if (audio.paused) {
-                audio.play().catch(e => console.log('Audio play failed:', e));
-            }
-        }, { once: true });
-        
-        // Try to play immediately (will work if user has interacted with domain before)
-        audio.play().catch(e => {
-            console.log('Autoplay blocked - music will start on first user interaction');
+  <script>
+// Background Music Setup
+const audio = document.getElementById('background-music');
+audio.volume = 0.15; // Keep it subtle - 15% volume
+
+let musicStarted = false;
+
+function startMusic() {
+    if (!musicStarted) {
+        audio.play().then(() => {
+            console.log('Music started successfully');
+            musicStarted = true;
+        }).catch(e => {
+            console.log('Audio play failed:', e);
         });
-    </script>
+    }
+}
+
+// Try multiple interaction events
+document.addEventListener('click', startMusic);
+document.addEventListener('keydown', startMusic);
+document.addEventListener('scroll', startMusic);
+document.addEventListener('touchstart', startMusic);
+
+// Try to play immediately
+audio.play().then(() => {
+    console.log('Autoplay worked!');
+    musicStarted = true;
+}).catch(e => {
+    console.log('Autoplay blocked - waiting for user interaction');
+});
+
+// Debug info
+console.log('Audio element:', audio);
+console.log('Audio src:', audio.src);
+console.log('Audio ready state:', audio.readyState);
+</script>
 </body>
 </html>
