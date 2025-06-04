@@ -333,11 +333,11 @@
 <body>
     <div class="ancient-pattern"></div>
     
-    <!-- Background Music -->
-<audio id="background-music" loop autoplay preload="auto">
+   <!-- Background Music -->
+<audio id="background-music" loop preload="auto">
     <source src="chill.mp3" type="audio/mpeg">
+    <source src="chill.mp3" type="audio/mp3">
 </audio>
-    </audio>
     
     <div class="navigation">
         <a href="https://gratified.com" class="nav-arrow left-arrow">‹</a>
@@ -437,42 +437,45 @@
         </footer>
     </div>
 
-  <script>
+ <script>
 // Background Music Setup
 const audio = document.getElementById('background-music');
-audio.volume = 0.15; // Keep it subtle - 15% volume
+audio.volume = 0.15;
 
 let musicStarted = false;
 
 function startMusic() {
-    if (!musicStarted) {
+    if (!musicStarted && audio.readyState >= 2) {
         audio.play().then(() => {
-            console.log('Music started successfully');
+            console.log('🎵 Music started!');
             musicStarted = true;
+            // Remove event listeners once music starts
+            document.removeEventListener('click', startMusic);
+            document.removeEventListener('scroll', startMusic);
+            document.removeEventListener('mousemove', startMusic);
         }).catch(e => {
-            console.log('Audio play failed:', e);
+            console.log('Music failed:', e.message);
         });
     }
 }
 
-// Try multiple interaction events
-document.addEventListener('click', startMusic);
-document.addEventListener('keydown', startMusic);
-document.addEventListener('scroll', startMusic);
-document.addEventListener('touchstart', startMusic);
-
-// Try to play immediately
-audio.play().then(() => {
-    console.log('Autoplay worked!');
-    musicStarted = true;
-}).catch(e => {
-    console.log('Autoplay blocked - waiting for user interaction');
+// Wait for audio to load
+audio.addEventListener('canplaythrough', function() {
+    console.log('Audio ready to play');
 });
 
-// Debug info
-console.log('Audio element:', audio);
-console.log('Audio src:', audio.src);
-console.log('Audio ready state:', audio.readyState);
+audio.addEventListener('error', function(e) {
+    console.log('Audio error:', e);
+});
+
+// Add multiple interaction triggers
+document.addEventListener('click', startMusic);
+document.addEventListener('scroll', startMusic);
+document.addEventListener('mousemove', startMusic);
+document.addEventListener('keydown', startMusic);
+
+// Debug
+console.log('Waiting for interaction to start music...');
 </script>
 </body>
 </html>
