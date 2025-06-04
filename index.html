@@ -319,20 +319,11 @@
 </head>
 <body>
 
-
-    <!-- Hidden YouTube Audio -->
-    <iframe 
-        id="background-music"
-        width="0" 
-        height="0" 
-        src="https://www.youtube.com/watch?v=VrDfSZ_6f4U"
-        frameborder="0" 
-        allow="autoplay; encrypted-media"
-        style="position: absolute; left: -9999px; top: -9999px;">
-    </iframe>
-
     
     <div class="ancient-pattern"></div>
+
+        <div id="youtube-player" style="display: none;"></div>
+
     
     <div class="navigation">
         <a href="https://gratified.com" class="nav-arrow left-arrow">‹</a>
@@ -405,4 +396,46 @@
         </footer>
     </div>
 </body>
+    <script>
+// Load YouTube API
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        height: '0',
+        width: '0',
+        videoId: 'VIDEO_ID_HERE', // Replace with your video ID
+        playerVars: {
+            autoplay: 1,
+            loop: 1,
+            playlist: 'VIDEO_ID_HERE', // Same video ID for looping
+            controls: 0,
+            showinfo: 0,
+            rel: 0,
+            modestbranding: 1,
+            iv_load_policy: 3
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    event.target.setVolume(30); // Set volume to 30%
+    event.target.playVideo();
+}
+
+function onPlayerStateChange(event) {
+    // Keep it playing
+    if (event.data == YT.PlayerState.ENDED) {
+        event.target.playVideo();
+    }
+}
+</script>
 </html>
