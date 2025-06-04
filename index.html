@@ -213,28 +213,30 @@
             letter-spacing: 8px;
         }
 
+        .drink-category {
+            margin-top: 30px;
+            margin-bottom: 25px;
+        }
+
+        .category-title {
+            font-size: 22px;
+            color: var(--deep-teal);
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            font-style: italic;
+            padding-left: 10px;
+            border-left: 3px solid var(--dusty-rose);
+        }
+
         .menu-item {
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             line-height: 1.7;
-            padding: 20px;
+            padding: 12px 20px;
             background-color: rgba(232, 163, 23, 0.08);
             border-left: 4px solid var(--burnt-orange);
             font-size: 18px;
-            position: relative;
-        }
-
-        .menu-item::before {
-            content: '◆';
-            position: absolute;
-            left: -8px;
-            top: 22px;
-            color: var(--burnt-orange);
-            font-size: 14px;
-            background-color: var(--cream-parchment);
-            width: 16px;
-            height: 16px;
-            text-align: center;
-            line-height: 16px;
+            margin-left: 15px;
         }
 
         .menu-item p {
@@ -311,19 +313,39 @@
             }
 
             .menu-item {
-                padding: 15px;
+                padding: 10px 15px;
                 font-size: 16px;
+                margin-left: 10px;
+            }
+
+            .category-title {
+                font-size: 20px;
+                padding-left: 8px;
+            }
+
+            .drink-category {
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body>
-
-    
     <div class="ancient-pattern"></div>
-
-        <div id="youtube-player" style="display: none;"></div>
-
+    
+    <!-- Background Music - Replace with your own track -->
+    <audio id="background-music" loop autoplay preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+        <!-- 
+        Replace the above with your own chill lofi track like:
+        <source src="./audio/chill-lofi-beats.mp3" type="audio/mpeg">
+        
+        Some good free options:
+        - Search "lofi hip hop" on freemusicarchive.org
+        - Look for "chill beats" on pixabay.com/music
+        - Download copyright-free tracks from YouTube and convert to MP3
+        -->
+    </audio>
     
     <div class="navigation">
         <a href="https://gratified.com" class="nav-arrow left-arrow">‹</a>
@@ -345,43 +367,70 @@
         <div class="content">
             <div class="section">
                 <h2 class="section-title">Basic Drinks</h2>
-                <div class="menu-item">
-                    <p>Coffee (3 varieties) — Our signature coffee selection</p>
+                
+                <!-- Coffee -->
+                <div class="drink-category">
+                    <h3 class="category-title">Coffee</h3>
+                    <div class="menu-item">
+                        <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Ethiopian single origin — bright, fruity notes</p>
+                    </div>
+                    <div class="menu-item">
+                        <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Colombian blend — smooth, balanced</p>
+                    </div>
+                    <div class="menu-item">
+                        <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Dark roast — bold, rich finish</p>
+                    </div>
                 </div>
-                <div class="menu-item">
-                    <p>Chai — Spiced to perfection</p>
+                
+                <!-- Tea -->
+                <div class="drink-category">
+                    <h3 class="category-title">Tea</h3>
+                    <div class="menu-item">
+                        <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Chai — cardamom, cinnamon, ginger blend</p>
+                    </div>
+                    <div class="menu-item">
+                        <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Jasmine green — delicate floral notes</p>
+                    </div>
+                    <div class="menu-item">
+                        <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Barley tea — nutty, caffeine-free</p>
+                    </div>
                 </div>
-                <div class="menu-item">
-                    <p>Matcha — Premium ceremonial grade</p>
-                </div>
-                <div class="menu-item">
-                    <p>Cocao — Pure, ceremonial grade</p>
+                
+                <!-- Other -->
+                <div class="drink-category">
+                    <h3 class="category-title">Other</h3>
+                    <div class="menu-item">
+                        <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Matcha — premium ceremonial grade</p>
+                    </div>
+                    <div class="menu-item">
+                        <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Cacao — pure, ceremonial grade</p>
+                    </div>
                 </div>
             </div>
             
             <div class="section">
                 <h2 class="section-title">Specialty Drinks</h2>
                 <div class="menu-item">
-                    <p>I'm Gonna Call the Cops — activated charcoal espresso</p>
+                    <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>I'm Gonna Call the Cops — activated charcoal espresso</p>
                 </div>
                 <div class="menu-item">
-                    <p>Ma'am/Sir, This is a Wendy's — lavender cold brew</p>
+                    <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Ma'am/Sir, This is a Wendy's — lavender cold brew</p>
                 </div>
                 <div class="menu-item">
-                    <p>I'm Gonna Kill Myself (No Don't, You're So Hot) — chocolate + rose</p>
+                    <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>I'm Gonna Kill Myself (No Don't, You're So Hot) — chocolate + rose</p>
                 </div>
             </div>
             
             <div class="section">
                 <h2 class="section-title">Food</h2>
                 <div class="menu-item">
-                    <p>Overnight Oats — blueberries, seeds, maple syrup</p>
+                    <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Overnight Oats — blueberries, seeds, maple syrup</p>
                 </div>
                 <div class="menu-item">
-                    <p>Salad — chipotle</p>
+                    <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Salad — chipotle</p>
                 </div>
                 <div class="menu-item">
-                    <p>Sushi — fresh rolls</p>
+                    <p><span style="color: var(--burnt-orange); margin-right: 8px;">◆</span>Sushi — fresh rolls</p>
                 </div>
             </div>
         </div>
@@ -395,47 +444,23 @@
             </div>
         </footer>
     </div>
-</body>
+
     <script>
-// Load YouTube API
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('youtube-player', {
-        height: '0',
-        width: '0',
-        videoId: 'VrDfSZ_6f4U', // Replace with your video ID
-        playerVars: {
-            autoplay: 1,
-            loop: 1,
-            playlist: 'VrDfSZ_6f4U', // Same video ID for looping
-            controls: 0,
-            showinfo: 0,
-            rel: 0,
-            modestbranding: 1,
-            iv_load_policy: 3
-        },
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-
-function onPlayerReady(event) {
-    event.target.setVolume(30); // Set volume to 30%
-    event.target.playVideo();
-}
-
-function onPlayerStateChange(event) {
-    // Keep it playing
-    if (event.data == YT.PlayerState.ENDED) {
-        event.target.playVideo();
-    }
-}
-</script>
+        // Background Music Setup
+        const audio = document.getElementById('background-music');
+        audio.volume = 0.15; // Keep it subtle - 15% volume
+        
+        // Handle autoplay restrictions (most browsers block autoplay with sound)
+        document.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play().catch(e => console.log('Audio play failed:', e));
+            }
+        }, { once: true });
+        
+        // Try to play immediately (will work if user has interacted with domain before)
+        audio.play().catch(e => {
+            console.log('Autoplay blocked - music will start on first user interaction');
+        });
+    </script>
+</body>
 </html>
